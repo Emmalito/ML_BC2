@@ -3,7 +3,6 @@
     we use in the notebook 2_Preprocessing
 """
 
-from tkinter import E
 import numpy as np
 import seaborn as sns
 import pandas as pd
