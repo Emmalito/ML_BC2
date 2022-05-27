@@ -18,6 +18,7 @@ from keras.layers import Dense
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import RandomizedSearchCV
+from random import choice
 from joblib import dump
 
 
@@ -71,22 +72,46 @@ def getANNModel(X_train, Inc_train, Acc_train):
     """Compute an Artificial Neural Network model"""
 
     #Parameters
-    dim, batch = len(X_train[0]), len(X_train)//100
+    dim, batch = len(X_train[0]), 64
     nnIncMod, nnAccMod = Sequential(), Sequential()
 
     #IncomeInvestment model
-    nnIncMod.add(Dense(units=512, activation='relu', input_dim=dim))
+    nnIncMod.add(Dense(units=512, activation='sigmoid', input_dim=dim))
+    nnIncMod.add(Dense(units=512, activation='relu'))
     nnIncMod.add(Dense(units=1, activation='sigmoid'))#output layer
-    nnIncMod.compile(loss='binary_crossentropy', optimizer='Adam', metrics=['Recall', 'AUC', 'accuracy'])
-    nnIncMod.fit(X_train, Inc_train, batch_size=batch, epochs=60, verbose=1, class_weight={0:0.6, 1:0.4}, use_multiprocessing=True) #, validation_data=(X_test, Inc_test))
+    nnIncMod.compile(loss='binary_crossentropy', optimizer='Adam', metrics=['Recall', 'Precision'])
+    nnIncMod.fit(X_train, Inc_train, batch_size=batch, epochs=120, verbose=1, class_weight={0:0.6, 1:0.4}, validation_split=0.2, use_multiprocessing=True) #, validation_data=(X_test, Inc_test))
 
     #AccumulationInvestment model
-    nnAccMod.add(Dense(units=512, activation='relu', input_dim=dim))
+    nnAccMod.add(Dense(units=512, activation='sigmoid', input_dim=dim))
+    nnAccMod.add(Dense(units=512, activation='relu'))
     nnAccMod.add(Dense(units=1, activation='sigmoid'))#output layer
-    nnAccMod.compile(loss='binary_crossentropy', optimizer='Adam', metrics=['Recall', 'AUC', 'accuracy'])
-    nnAccMod.fit(X_train, Acc_train, batch_size=batch, epochs=100, verbose=1, use_multiprocessing=True) #, validation_data=(X_test, Acc_test))
+    nnAccMod.compile(loss='binary_crossentropy', optimizer='Adam', metrics=['Recall', 'Precision'])
+    nnAccMod.fit(X_train, Acc_train, batch_size=batch, epochs=120, verbose=1, use_multiprocessing=True) #, validation_data=(X_test, Acc_test))
 
     return nnIncMod, nnAccMod
+
+
+def ensembleLearner(X_train, t_train, epochs):
+    models = [Sequential()] * 3
+    dim = len(X_train[0])
+    nbUnits = [128, 256, 512]
+    for mod in models:
+        mod.add(Dense(units=choice(nbUnits), activation='relu', input_dim=dim))
+        mod.add(Dense(units=1, activation='sigmoid'))#output layer
+        mod.compile(loss='binary_crossentropy', optimizer='Adam', metrics=['Recall', 'Precision', 'accuracy'])
+        mod.fit(X_train, t_train, batch_size=64, epochs=epochs, verbose=0, validation_split=0.2, use_multiprocessing=True)
+    return models
+
+
+def predictionEnsemble(models, X_test):
+
+    prediction = [0]
+    for mod in models:
+        prediction += mod.predict(X_test)
+    prediction /= 3
+
+    return prediction
 
 
 def metrics(cm, isInc):
