@@ -63,8 +63,8 @@ def getRandomForestModel(X_train, Inc_train, Acc_train):
     rfModAcc = rf_randomAcc.best_estimator_
 
     #Save the models
-    dump(rfModInc, 'RandomForestInc.joblib')
-    dump(rfModAcc, 'RandomForestAcc.joblib')
+    dump(rfModInc, 'src/RandomForestInc.joblib')
+    dump(rfModAcc, 'src/RandomForestAcc.joblib')
 
 
 def ensembleLearner(X_train, t_train, epochs):
