@@ -8,6 +8,24 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from src.modelsFct import predictionEnsemble
+
+
+
+def incomePred(mean, std, model, data):
+    """Predict an income need thanks to the income
+    model that we build. Return the class prediction"""
+
+    data = (data-mean)/std #We normalize the data
+    return model.predict(data.reshape(1, -1))
+
+
+def accumulationPred(mean, std, model, data):
+    """Predict an income need thanks to the income
+    model that we build. Return the class prediction"""
+
+    data = (data-mean)/std #We normalize the data
+    return predictionEnsemble(model, data.reshape(1, -1)) > 0.28
 
 
 def NBA(Rc, productType):
