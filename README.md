@@ -24,11 +24,11 @@ To launch the project, check that you have the libraries needed ! Then follow th
 
 ## Description
 
-The topic was a classical classification problem and then we have to implement a Next Best Action. Everything on the topic is well detailed in the subject.
+The topic was a classical classification problem and then we have to implement a recommandation system. Everything on the topic is well detailed in the subject.
 
 Our different notebook follow the way we have work and and reflects our way of thinking. Each one use the results of the previous one and go a step further. 
 
-We have placed great emphasis on the classification problem and in particular on the use of features (preprocessing and interpretability for example).
+qsWe have placed great emphasis on the classification problem and in particular on the use of features (preprocessing and interpretability for example).
 
 Also, for the choice of the models, we have done a lot of test, on different models with different calibrations. The results and models chosen are those which we find the more interinsting in our point of view. In fact, we have try to think like a bank or insurance would have done.
 
