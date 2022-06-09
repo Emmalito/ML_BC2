@@ -16,17 +16,18 @@ The deposit is divided as follows :
 - notebook : folder containing all of our notebook, each one correspond to one part that we have found importantource
 - src/: folder containing the source code (function, data storage and models)
 - test/: folder containing test code
+- presentation : folder containing the slides and the HTML form of notebooks
 - Business case topic and readme
 
 ## Execution
 
-To launch the project, check that you have the libraries needed ! Then follow the notebooks in the order. 
+To launch the project, check that you have the libraries needed ! Then follow the notebooks in the order.
 
 ## Description
 
 The topic was a classical classification problem and then we have to implement a recommandation system. Everything on the topic is well detailed in the subject.
 
-Our different notebook follow the way we have work and and reflects our way of thinking. Each one use the results of the previous one and go a step further. 
+Our different notebook follow the way we have work and and reflects our way of thinking. Each one use the results of the previous one and go a step further.
 
 We have placed great emphasis on the classification problem and in particular on the use of features (preprocessing and interpretability for example).
 
