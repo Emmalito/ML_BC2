@@ -3,11 +3,7 @@
     we use in the notebook 4_NextBestAction
 """
 
-# Classical libraries
-import numpy as np
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
+# Library
 from src.modelsFct import predictionEnsemble
 
 
