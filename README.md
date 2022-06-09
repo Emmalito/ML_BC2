@@ -13,15 +13,25 @@ The team is composed by erasmus students :
 
 The deposit is divided as follows :
 
-- notebook : folder containing all of our notebook, each one correspond to one part that we have found importantource
-- src/: folder containing the source code (function, data storage and models)
-- test/: folder containing test code
-- presentation : folder containing the slides and the HTML form of notebooks
-- Business case topic and readme
+- notebook/: folder with all the notebooks, each one correspond to one part that we have found importantource
+- src/: folder with the source code, the data file and the models
+- presentation/: folder with the slides presentation and the HTML pages of the notebooks
+- Subject of the project
+- README
 
 ## Execution
 
 To launch the project, check that you have the libraries needed ! Then follow the notebooks in the order.
+
+Here, some used libraries:
+
+- numpy
+- matplotlib.pyplot
+- seaborn
+- pandas
+- sklearn
+- shap
+- eli5
 
 ## Description
 
